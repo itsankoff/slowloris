@@ -5,3 +5,11 @@ build:
 
 run: build
 	@./bin/slowloris
+
+server:
+	@bash server.sh & > /dev/null 2>&1
+
+kill:
+	@echo $(cat server.pid)
+
+
