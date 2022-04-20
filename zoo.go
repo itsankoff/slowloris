@@ -22,7 +22,7 @@ func Zoo(c Config) error {
 	for i := int64(0); i < c.Count; i++ {
 		wg.Add(1)
 		go func(index int64) {
-			fmt.Printf("Slowloris %d\n", index)
+			fmt.Printf("slowloris %d\n", index)
 			Slowloris(ctx, c.URL)
 			time.Sleep(1 * time.Second)
 			wg.Done()
