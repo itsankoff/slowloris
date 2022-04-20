@@ -20,5 +20,9 @@ func SanitizeDomain(rawURL string) (string, error) {
 		return "", err
 	}
 
+	if !strings.Contains(parsed.Host, ":") {
+		return fmt.Sprintf("%s:%s", parsed.Host, parsed.Port()), nil
+	}
+
 	return parsed.Host, nil
 }
