@@ -25,3 +25,6 @@ any third party. Use it only for educational purposes and at own discretion.
 ## Reference
 * [Wikipedia](https://en.wikipedia.org/wiki/Slowloris_(computer_security))
 * [CloudFlare](https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/)
+
+## License
+* [MIT](LICENSE)
