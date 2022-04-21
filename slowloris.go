@@ -41,14 +41,18 @@ func Slowloris(ctx context.Context, index int64, interval time.Duration, host st
 	return nil
 }
 
+// GetRequestLine returns HTTP request line for GET request
 func GetRequestLine() string {
 	return "GET / HTTP/1.1\r\n"
 }
 
+// RandomHeader generates a random HTTP header to send as part of the
+// slowloris attack
 func RandomHeader() string {
 	return "Foo: Bar\r\n"
 }
 
+// ClosingLine sends a closing line for a HTTP request
 func ClosingLine() string {
 	return "\r\n"
 }

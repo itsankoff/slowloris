@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// Config holds configuration available for constructing a slowloris zoo.
+// Config holds configuration available for constructing a slowloris zoo
 type Config struct {
 	URL      string
 	Count    int64
@@ -15,8 +15,7 @@ type Config struct {
 	Timeout  time.Duration
 }
 
-// Zoo is a function that can perform distributed slow loris attack based on
-// the given parameters.
+// Zoo performs a distributed slowloris attack based on the given parameters
 func Zoo(c Config) error {
 	var ctx context.Context
 	ctx = context.Background()
