@@ -10,3 +10,4 @@ data_*/
 
 bin/slowloris
 .server.pid
+.server.log

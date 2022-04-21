@@ -7,9 +7,7 @@ run: build
 	@./bin/slowloris
 
 server:
-	@bash server.sh & > /dev/null 2>&1
+	@bash server.sh
 
 kill:
-	@echo $(cat server.pid)
-
-
+	@cat .server.pid | xargs kill
