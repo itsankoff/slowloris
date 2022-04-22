@@ -3,13 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"sync"
 	"time"
 )
 
 // Config holds configuration available for constructing a slowloris zoo
 type Config struct {
-	URL      string
+	URL      *url.URL
 	Count    int64
 	Interval time.Duration
 	Timeout  time.Duration
