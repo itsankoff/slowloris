@@ -19,7 +19,7 @@ TBD
 This software MUST NOT BE used for malicious purpose that may cause harm on
 any third party. Use it only for educational purposes and at own discretion.
 
-* Basic usage: `slowloris -domain=<website>`
+* Basic usage: `slowloris -url=<URL>`
 * For more sophisticated usage use `slowloris help` to get the full option set
 
 ## Reference
