@@ -22,6 +22,22 @@ any third party. Use it only for educational purposes and at own discretion.
 * Basic usage: `slowloris -url=<URL>`
 * For more sophisticated usage use `slowloris help` to get the full option set
 
+## Testing
+
+The Makefile support simple HTTP server that you can use for testing purposes.
+* Start the server:
+```
+# The server listens on localhost:8080 and runs in background
+# Log of the server in ./.server.log
+# PID of the server in ./.server.pid
+make server
+```
+* Stop the server:
+```
+make kill
+```
+
+
 ## Reference
 * [Wikipedia](https://en.wikipedia.org/wiki/Slowloris_(computer_security))
 * [CloudFlare](https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/)
