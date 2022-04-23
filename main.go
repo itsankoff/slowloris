@@ -16,12 +16,11 @@ func main() {
 
 	flag.Parse()
 	if !flag.Parsed() {
-		Help()
 		return
 	}
 
 	if *rawURL == "" {
-		Help()
+		flag.PrintDefaults()
 		return
 	}
 
