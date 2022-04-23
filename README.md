@@ -19,8 +19,24 @@ TBD
 This software MUST NOT BE used for malicious purpose that may cause harm on
 any third party. Use it only for educational purposes and at own discretion.
 
-* Basic usage: `slowloris -domain=<website>`
+* Basic usage: `slowloris -url=<URL>`
 * For more sophisticated usage use `slowloris help` to get the full option set
+
+## Testing
+
+The Makefile support simple HTTP server that you can use for testing purposes.
+* Start the server:
+```
+# The server listens on localhost:8080 and runs in background
+# Log of the server in ./.server.log
+# PID of the server in ./.server.pid
+make server
+```
+* Stop the server:
+```
+make kill
+```
+
 
 ## Reference
 * [Wikipedia](https://en.wikipedia.org/wiki/Slowloris_(computer_security))
