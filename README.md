@@ -4,13 +4,12 @@
 
 
 ## How it works
-Read more [here](https://thetooth.io/blog/slowloris-attack) 🦷
+Read the [article](https://thetooth.io/blog/slowloris-attack) 🦷
 
 ## How to protect from it
 TBD
 
 ## Installation
-* Make sure you have golang installation `1.16+`
 * Run `go install github.com/itsankoff/slowloris`
 
 ## Usage
@@ -45,10 +44,10 @@ make stats
 make stats STATE=<STATE (e.g. LISTEN)>
 ```
 
-
 ## Reference
+* [thetooth.io](https://thetooth.io/blog/slowloris-attack/)
 * [Wikipedia](https://en.wikipedia.org/wiki/Slowloris_(computer_security))
 * [CloudFlare](https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/)
 
 ## License
-* [MIT](LICENSE)
+[MIT](LICENSE)
