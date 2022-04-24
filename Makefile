@@ -1,6 +1,7 @@
 default: build
 
 SERVER_PID=.server.pid
+STATE=ESTABLISHED
 
 build:
 	@go build -o ./bin/slowloris *.go
@@ -14,3 +15,6 @@ server:
 kill:
 	@cat .server.pid | xargs kill
 	@rm .server.pid
+
+stats:
+	@echo ${STATE} && netstat -anp tcp | grep ${STATE} | wc -l
