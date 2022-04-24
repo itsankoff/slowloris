@@ -10,10 +10,11 @@ import (
 
 // Config holds configuration available for constructing a slowloris zoo
 type Config struct {
-	URL      *url.URL
-	Count    int64
-	Interval time.Duration
-	Timeout  time.Duration
+	URL       *url.URL
+	Count     int64
+	Interval  time.Duration
+	Timeout   time.Duration
+	UserAgent string
 }
 
 // Zoo performs a distributed slowloris attack based on the given parameters
@@ -30,7 +31,7 @@ func Zoo(c Config) error {
 		go func(index int64) {
 			defer wg.Done()
 			fmt.Printf("slowloris %d\n", index)
-			if err := Slowloris(ctx, index, c.Interval, c.URL); err != nil {
+			if err := Slowloris(ctx, index, c); err != nil {
 				fmt.Printf("slowloris %d received err: %s\n", index, err)
 				return
 			}
