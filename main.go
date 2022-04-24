@@ -5,9 +5,19 @@ import (
 	"flag"
 	"fmt"
 	"net/url"
+	"os"
 	"strings"
 	"time"
 )
+
+func checkHelp(args []string) {
+	for _, arg := range args {
+		if arg == "help" || arg == "-help" || arg == "--help" {
+			flag.PrintDefaults()
+			os.Exit(0)
+		}
+	}
+}
 
 func main() {
 	// cmd flags
@@ -29,6 +39,8 @@ func main() {
 	if !flag.Parsed() {
 		return
 	}
+
+	checkHelp(os.Args)
 
 	if !strings.Contains(*rawURL, "http") {
 		err = errors.New("no scheme provided. use (http or https)")
