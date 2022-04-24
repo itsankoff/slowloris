@@ -1,6 +1,6 @@
 # slowloris - Golang distributed Slowloris attack
 
-![Cute Slowloris](slowloris.png)
+![Cute Slowloris](assets/slowloris.png)
 
 
 ## How it works
