@@ -36,6 +36,14 @@ make server
 ```
 make kill
 ```
+* Get statistics about `ESTABLISHED` connections:
+```
+make stats
+```
+* Get statistics about count of connections in other states:
+```
+make stats STATE=<STATE (e.g. LISTEN)>
+```
 
 
 ## Reference
