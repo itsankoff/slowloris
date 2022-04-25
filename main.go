@@ -55,12 +55,12 @@ func main() {
 			printHelp()
 		}
 	}()
+	checkHelp(os.Args)
 
 	flags.Parse(os.Args[1:])
 	if !flags.Parsed() {
 		return
 	}
-	checkHelp(os.Args)
 
 	if !strings.Contains(*rawURL, "http") {
 		err = errors.New("no scheme provided. use (http or https)")
