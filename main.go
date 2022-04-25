@@ -44,9 +44,9 @@ func main() {
 	// cmd flags
 	var rawURL *string = flags.String("url", "", "URL to perform attack. Format: http[s]://<domain>[:<port>]/<path>?<query-string>")
 	var count *int64 = flags.Int64("count", int64(10), "Number of parallel workers")
-	var interval *time.Duration = flags.Duration("interval", 1*time.Second, "Interval for sending data")
-	var timeout *time.Duration = flags.Duration("timeout", 10*time.Second, "Timeout for the whole operation")
-	var userAgent *string = flags.String("user-agent", "random", "Custom User-Agent header. Default 'random' which sends random header for each worker")
+	var interval *time.Duration = flags.Duration("interval", 1*time.Second, "Interval for sending data. Supports ms, s, m, h, etc.")
+	var timeout *time.Duration = flags.Duration("timeout", 10*time.Second, "Timeout for the whole operation. 0 means no timeout")
+	var userAgent *string = flags.String("user-agent", "random", "Custom User-Agent header. 'random' sends random headers for each worker")
 
 	var err error
 	defer func() {
