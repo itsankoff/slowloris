@@ -3,19 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/url"
 	"sync"
-	"time"
 )
-
-// Options holds configuration for slowloris attack workers
-type Options struct {
-	URL       *url.URL
-	Count     int64
-	Interval  time.Duration
-	Timeout   time.Duration
-	UserAgent string
-}
 
 // Zoo performs a distributed slowloris attack based on the given parameters
 func Zoo(o Options) error {

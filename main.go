@@ -71,15 +71,18 @@ func main() {
 		return
 	}
 
-	fmt.Println("slowloris...")
-	fmt.Printf("creating zoo of %d loris for %s\n", *count, *rawURL)
-	if err := Zoo(Options{
+	options := Options{
 		URL:       parsed,
+		UserAgent: *userAgent,
+		Secure:    parsed.Scheme == "https",
 		Count:     *count,
 		Interval:  *interval,
 		Timeout:   *timeout,
-		UserAgent: *userAgent,
-	}); err != nil {
+	}
+
+	fmt.Println("slowloris...")
+	fmt.Printf("creating zoo of %d loris for %s\n", *count, *rawURL)
+	if err := Zoo(options); err != nil {
 		return
 	}
 
