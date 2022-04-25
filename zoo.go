@@ -8,8 +8,8 @@ import (
 	"time"
 )
 
-// Config holds configuration available for constructing a slowloris zoo
-type Config struct {
+// Options holds configuration for slowloris attack workers
+type Options struct {
 	URL       *url.URL
 	Count     int64
 	Interval  time.Duration
