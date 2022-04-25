@@ -15,7 +15,8 @@ TBD
 ## Usage
 * Basic usage
 ```
-slowloris -url=<URL>
+slowloris -url="http[s]://<domain>[:<port>]/<path>?<query-string>"
+slowloris -url="https://example.com"
 ```
 
 * For more sophisticated usage use to get the full option set:
