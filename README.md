@@ -13,13 +13,24 @@ TBD
 * Run `go install github.com/itsankoff/slowloris`
 
 ## Usage
+* Basic usage
+```
+slowloris -url=<URL>
+```
 
-**WARNING**:
-This software MUST NOT BE used for malicious purpose that may cause harm on
-any third party. Use it only for educational purposes and at own discretion.
+* For more sophisticated usage use to get the full option set:
+```
+slowloris help
+```
 
-* Basic usage: `slowloris -url=<URL>`
-* For more sophisticated usage use `slowloris help` to get the full option set
+* **LEGAL DISCLAIMER**
+```
+Usage of this program for attacking targets without
+prior mutual consent is illegal. It is the end user's responsibility to obey
+all applicable local, state and federal laws in all countries.
+Developers assume no liability and are not responsible for any misuse or
+damage caused by this program.
+```
 
 ## Testing
 
