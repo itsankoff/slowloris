@@ -53,7 +53,7 @@ func main() {
 
 	fmt.Println("slowloris...")
 	fmt.Printf("creating zoo of %d loris for %s\n", *count, *rawURL)
-	if err := Zoo(Config{
+	if err := Zoo(Options{
 		URL:       parsed,
 		Count:     *count,
 		Interval:  *interval,
